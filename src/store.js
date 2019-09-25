@@ -8,6 +8,10 @@ const instance = new Vuex.Store({
   state: {
     count: 0
   },
+  getters: {
+    _count: state => state.count,
+    getCount: state => () => state.count
+  },
   mutations: {
     increment(state) {
       state.count++;

@@ -1,6 +1,7 @@
 <template>
   <div class="hello">
-    <div>count: {{ $store.state.count }}</div>
+    <div>reactive count: {{ $store.getters._count }}</div>
+    <div>functional count: {{ functionalCount }}</div>
     <button @click="onClick">increment</button>
   </div>
 </template>
@@ -15,6 +16,12 @@ export default {
     onClick() {
       const dispatcher = getDispatcher();
       dispatcher.dispatch(ActionTypes.Increment);
+    }
+  },
+  computed: {
+    functionalCount() {
+      // getterでプロパティアクセスとメソッドアクセスを比較する用
+      return this.$store.getters.getCount();
     }
   }
 };
